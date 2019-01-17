@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{text}}</h1>
+            <button @click="start">翻滚吧</button>
+            <button @click="end">停止吧</button>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    text:"今日神段丨这届网友省钱操作hin了不起：姐妹们有剩饭记得叫我！",
+                    timerId:null
+                },
+                methods: {
+                    start(){
+                        if(!this.timerId){
+                             this.timerId=setInterval(()=>{
+                                 let left=this.text.substring(0,1)
+                                 let right=this.text.substring(1)
+                                 this.text=right+left
+                            },200)
+                        }
+                     
+
+                    },
+                    end(){
+                        clearInterval(this.timerId)
+                        this.timerId=null
+                    }
+                    
+                },
+            })
+        </script>
+    </body>
+</html>
