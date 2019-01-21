@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="./lib/vue-2.4.0.js"></script>
+        <style>
+            .my-enter,
+            .my-leave-to{
+                opacity: 0;
+                transform: translateX(150px);
+            }
+            .my-enter-active,
+            .my-leave-active{
+                transition: all 1s ease;
+            }
+        
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <button @click="flag=!flag">toggle</button>
+            <transition name="my">
+                <h4 v-if="flag">这是一个h4标签</h4>
+            </transition>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    flag:false
+                },
+                methods:{
+
+                }
+            })
+        </script>
+    </body>
+</html>
