@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="./vue-2.4.0.js"></script>
+        <link rel="stylesheet" href="./bootstrap-3.3.7.css">
+    </head>
+    <body>
+        <div id="app">
+                <commentbox @func="loadComments"></commentbox>
+                <ul class="list-group">
+                    <li class="list-group-item" v-for="item in list" :key="item.id">
+                        <span class="badge">评论人:{{item.user}}</span>
+                        {{item.content}}
+                    </li>
+                </ul>
+            
+        </div>
+        <template id="com1">
+                <div>
+                        <div class="form-group">
+                                <label>评论人:</label>
+                                    <input type="text" v-model="user" class="form-control"> 
+                       </div>
+                       <div class="from-group">
+                            <label>评论内容</label>
+                                <input type="text" v-model="content" class="form-control"> 
+                        </div>
+                        <div class="from-group">
+                            <input type="button" value="发表类容" @click="postcomment" class="btn btn-primary">
+                        </div>
+                </div>
+            </template>
+        <script>
+            var commentbox={
+                template:'#com1',
+                data(){
+                    return {
+                        user:'',
+                        content:''
+                    }
+                },
+                methods:{
+                    postcomment(){
+                        var comment={id:Date.now(),user:this.user,content:this.content}
+                        var list=JSON.parse(localStorage.getItem('cmts') || '[]')
+                        list.unshift(comment)
+                        localStorage.setItem('cmts',JSON.stringify(list))
+                        this.user=this.content=''
+                        this.$emit('func')
+                    }
+                }
+            }
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    list:[]
+                },
+             
+                methods:{
+                    loadComments(){
+                        this.list=JSON.parse(localStorage.getItem('cmts')|| '[]')
+                    }
+                },
+                created() {
+                    this.loadComments()
+                },
+                components:{
+                    commentbox
+                }
+            })
+        </script>
+    </body>
+</html>

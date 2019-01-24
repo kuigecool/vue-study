@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="./vue-2.4.0.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <a href="" @click.prevent="conName='login'">登录</a>
+            <a href="" @click.prevent="conName='resgiter'">注册</a>
+            <component :is="conName"></component>
+
+        </div>
+        <script>
+            Vue.component('login',{
+                template:'<h3>这是登录组件</h3>'
+            })
+            Vue.component('resgiter',{
+                template:'<h3>这是注册组件</h3>'
+            })
+
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    conName:'login'
+                },
+                methods:{
+
+                }
+            })
+        </script>
+    </body>
+</html>
