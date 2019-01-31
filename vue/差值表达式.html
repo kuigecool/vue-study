@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p>{{msg}}</p>
+            <div v-text="msg+Math.random()"></div>
+            <div v-html="msg1+Math.random()"></div>
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'你好呀',
+                    msg1:"<span>好个屁呀</span>"
+                }
+            })
+        </script>
+    </body>
+</html>

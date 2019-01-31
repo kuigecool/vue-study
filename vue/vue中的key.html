@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            不要key
+            <br>
+            用户名:<input v-if="flag">
+            邮箱: <input v-else-if>
+            <br>    
+            要key
+            用户名:<input v-if="flag" key="username">
+            邮箱: <input v-else-if key="useremail">
+        </div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    flag:true,
+                    msg:'hello world'
+
+                },
+                methods: {
+                    isshow(){
+                        setInterval(()=>{
+                            this.flag=false
+                        },2000)
+                    }
+                },
+                mounted() {
+                    this.isshow()
+                },
+            })
+        </script>
+    </body>
+</html>

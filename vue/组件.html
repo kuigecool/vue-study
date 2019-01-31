@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <p @click="show">{{msg}}</p>
+            <item></item>
+            <item1></item1>
+        </div>
+        <script>
+            Vue.component('item',{
+                template:'<h2>你好 </h2>'
+            })
+            var item1={
+                template:'<h1>我是私有组件</h1>'
+            }
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:'hello world'
+                },
+                methods: {
+                    show(){
+                        alert(1)
+                    }
+                },
+                components:{
+                    item1
+                }
+            })
+        </script>
+    </body>
+</html>

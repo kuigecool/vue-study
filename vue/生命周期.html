@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            var vm = new Vue({
+                el: '#app',
+                data: {
+                    msg:"hello world",
+                    msg1:"我需要改变"
+                },
+                beforeCreate() {
+                    console.log('创建之前')
+                },
+                created() {
+                    console.log('实例创建完成后被立即调用');
+                    console.log(this.$el+'$el 属性目前不可见');
+                    
+                    
+                },
+                beforeMount() {
+                    console.log('在服务器端渲染期间不被调用');
+                    
+                },
+                mounted() {
+                    console.log('dom结构初始化完毕')
+                    console.log(this.$el);
+                    
+                },
+                beforeDestroy() {
+                    console.log('实例销毁前调用')
+                },
+                destroyed() {
+                    console.log('实例销毁后调用')
+                },
+                beforeUpdate() {
+                    // 数据更新是调用,
+                },
+                updated() {
+                    // 数据更新后dom结构重新渲染时调用
+                },
+                
+            })
+            vm.$destroy()  //当这个函数被执行的时候，就会触发 beforeDestroy 与 destroyed 这两个函数
+        </script>
+    </body>
+</html>
